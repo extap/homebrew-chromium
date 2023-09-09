@@ -3,8 +3,8 @@ class DepotTools < Formula
   desc "Collection of tools for dealing with Chromium development"
   homepage "https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools.html"
   url "https://chromium.googlesource.com/chromium/tools/depot_tools.git",
-    :branch => "master"
-  version "master"
+    :branch => "main"
+  version "main"
 
   def tools
     %w[
@@ -22,7 +22,6 @@ class DepotTools < Formula
       weekly
       git-gs
       zsh-goodies
-      ninja
     ]
   end
 
@@ -31,7 +30,7 @@ class DepotTools < Formula
     bin.mkpath
 
     tools.each do |tool|
-      (bin/tool).write <<-EOS.undent
+      (bin/tool).write <<~EOS
         #!/bin/bash
         TOOL=#{prefix}/#{tool}
         export DEPOT_TOOLS_UPDATE=0
@@ -42,7 +41,7 @@ class DepotTools < Formula
   end
 
   def caveats
-    <<-EOS.undent
+  <<~EOS
     Installed tools:
     #{tools.join(", ")}
     EOS
